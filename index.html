@@ -401,12 +401,17 @@
     <h2 class="h-lg" data-split>Hear about it before it fills</h2>
     <p>One email when dates open, and occasionally something worth reading in between. You can leave whenever you like.</p>
 
-    <!-- While action="#", main.js hands the address to the visitor's mail client so
-         the form still works. Set action= to your email provider's endpoint and that
-         fallback turns itself off automatically. -->
+    <!-- ═══ TO GO LIVE WITH KIT ═══
+         1. kit.com → free Newsletter plan → Grow → Forms → create an inline form
+         2. Copy its ID from the embed URL: app.kit.com/forms/[THIS NUMBER]/subscriptions
+         3. Replace action="#" below with:
+            action="https://app.kit.com/forms/1234567/subscriptions"
+         The field is already named email_address, which is what Kit expects.
+         While action stays "#", main.js hands the address to the visitor's mail
+         client instead, so the form works tonight either way. -->
     <form class="signup" action="#" method="post" novalidate>
       <label class="sr-only" for="email">Email address</label>
-      <input id="email" type="email" name="email" placeholder="you@yourpractice.com" required autocomplete="email">
+      <input id="email" type="email" name="email_address" placeholder="you@yourpractice.com" required autocomplete="email">
       <button class="btn btn-solid-light" type="submit">Join the list</button>
     </form>
     <p class="join-alt">Or write to <a href="mailto:hello@therootandstem.com">hello@therootandstem.com</a></p>
