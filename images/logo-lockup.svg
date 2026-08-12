@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 88" width="420" height="88" role="img" aria-label="The Root and Stem — a branch of Full Bloom Counseling">
+  <title>The Root and Stem</title>
+  <g transform="translate(6 12) scale(0.98)">
+    <g fill="none" stroke="#263A2F" stroke-width="3.5" stroke-linecap="round">
+      <path d="M27.72 13.73 A19 19 0 0 0 24.90 49.34"/>
+      <path d="M36.28 13.73 A19 19 0 0 1 39.10 49.34"/>
+      <path d="M32 16 V47"/>
+      <path d="M32 47 C32 54 26.5 57 21.5 61"/>
+      <path d="M32 47 C32 54 37.5 57 42.5 61"/>
+      <path d="M32 47 V61"/>
+    </g>
+    <path d="M32 2.5 C36.4 7.2 38.4 11 38.4 14.4 C38.4 18.2 35.6 20.8 32 20.8 C28.4 20.8 25.6 18.2 25.6 14.4 C25.6 11 27.6 7.2 32 2.5 Z" fill="#8C5C3B"/>
+    <path d="M32 33 C26.2 32.2 23.4 28.8 23.4 25.4 C27.8 25.4 31.2 28.2 32 33 Z" fill="#263A2F"/>
+  </g>
+
+  <text x="92" y="47" font-family="Cormorant Garamond, Georgia, serif" font-size="35" font-weight="500" fill="#263A2F">The Root <tspan font-style="italic" font-weight="400" fill="#8C5C3B">and</tspan> Stem</text>
+  <text x="93" y="67" font-family="DM Sans, system-ui, sans-serif" font-size="9.5" font-weight="500" letter-spacing="2.9" fill="#55605A">A BRANCH OF FULL BLOOM COUNSELING</text>
+</svg>
