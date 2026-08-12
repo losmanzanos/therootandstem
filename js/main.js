@@ -188,26 +188,70 @@
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  /* Until an email provider is wired up, the form still works: it hands the
-     address off to the user's mail client, pre-addressed and pre-written.
-     Set action= to a real endpoint and this fallback switches itself off. */
+  /* ── Signup ───────────────────────────────────────────────
+     Posts to Kit with fetch() so the visitor never leaves the page. Kit's
+     embed script would do this too, but pulling in third-party JS for one
+     POST isn't worth it. Degrades in three stages:
+       · fetch succeeds        → inline confirmation
+       · fetch fails / no JS   → ordinary form POST to Kit (still subscribes)
+       · action still "#"      → hands off to the visitor's mail client      */
   var form = document.querySelector('.signup');
-  if (form && form.getAttribute('action') === '#') {
+
+  function say(msg) {
+    var note = document.querySelector('.join-alt');
+    if (note) note.textContent = msg;
+  }
+
+  if (form) {
+    var action = form.getAttribute('action');
+
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
       var input = form.querySelector('input[type="email"]');
       var addr = (input && input.value || '').trim();
+
       if (!addr || addr.indexOf('@') < 1) {
+        e.preventDefault();
         if (input) { input.focus(); input.setAttribute('aria-invalid', 'true'); }
         return;
       }
-      input.removeAttribute('aria-invalid');
-      window.location.href =
-        'mailto:hello@therootandstem.com' +
-        '?subject=' + encodeURIComponent('Add me to the list') +
-        '&body='    + encodeURIComponent('Please add ' + addr + ' to the mailing list.\n\n');
-      var note = document.querySelector('.join-alt');
-      if (note) note.textContent = 'Opening your email app — send that message and you’re on the list.';
+      if (input) input.removeAttribute('aria-invalid');
+
+      /* No endpoint yet — fall back to the visitor's mail client. */
+      if (action === '#') {
+        e.preventDefault();
+        window.location.href =
+          'mailto:hello@therootandstem.com' +
+          '?subject=' + encodeURIComponent('Add me to the list') +
+          '&body='    + encodeURIComponent('Please add ' + addr + ' to the mailing list.\n\n');
+        say('Opening your email app — send that message and you’re on the list.');
+        return;
+      }
+
+      /* No fetch (very old browser) — let the native POST happen. */
+      if (!window.fetch) return;
+
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Adding…'; }
+
+      fetch(action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          form.innerHTML = '<p class="signup-done">You’re on the list. ' +
+            'Watch for a confirmation email — it decides whether the rest arrive.</p>';
+          say('');
+        })
+        .catch(function () {
+          /* Network or CORS trouble: submit the old-fashioned way rather than
+             losing the address. Kit will render its own confirmation page. */
+          if (btn) { btn.disabled = false; btn.textContent = label; }
+          form.submit();
+        });
     });
   }
 })();
