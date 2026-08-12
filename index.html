@@ -30,7 +30,7 @@
 <link rel="preload" as="image" type="image/webp" href="images/hero-stems-1440.webp"
       imagesrcset="images/hero-stems-640.webp 640w, images/hero-stems-1024.webp 1024w, images/hero-stems-1440.webp 1440w, images/hero-stems-1920.webp 1920w, images/hero-stems-2400.webp 2400w"
       imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=8">
 
 <script type="application/ld+json">
 {
@@ -335,7 +335,7 @@
 
   <div class="hero-inner shell">
     <p class="kicker reveal-fade">A branch of Full Bloom Counseling</p>
-    <h1 class="display" data-split>Before the bloom, <em>the root.</em></h1>
+    <h1 class="display" data-split>Before the bloom,<br><em>the root.</em></h1>
     <p class="hero-sub reveal-fade" data-delay="1">Every bloom needs something holding it up. We run trainings, retreats and consultation for therapists — from a group practice in Denver that still sees clients every week.</p>
     <div class="hero-cta reveal-fade" data-delay="2">
       <a class="btn btn-solid-light" href="#calendar">What's coming up</a>
@@ -375,7 +375,7 @@
         <picture>
       <source type="image/webp" srcset="images/room-480.webp 480w, images/room-800.webp 800w, images/room-1200.webp 1200w" sizes="(max-width:680px) 92vw, (max-width:1180px) 560px, 420px">
       <source type="image/jpeg" srcset="images/room-480.jpg 480w, images/room-800.jpg 800w, images/room-1200.jpg 1200w" sizes="(max-width:680px) 92vw, (max-width:1180px) 560px, 420px">
-      <img src="images/room-1200.jpg" alt="Late afternoon light falling across the floor of an empty room" width="1200" height="1500" loading="lazy" decoding="async">
+      <img src="images/room-1200.jpg" alt="Late afternoon light falling across the floor of an empty room" width="1200" height="1500" decoding="async">
     </picture>
       </figure>
     </div>
@@ -676,6 +676,12 @@
         </ul>
       </div>
     </div>
+    <div class="daylight" id="daylight" hidden>
+      <span class="daylight-label">Today in Denver</span>
+      <p class="daylight-line"><span id="dl-len"></span><span id="dl-delta"></span></p>
+      <p class="daylight-sun"><span id="dl-rise"></span><i></i><span id="dl-set"></span></p>
+    </div>
+
     <div class="foot-base">
       <span>© <span id="year">2026</span> The Root and Stem</span>
       <span>A branch of Full Bloom Counseling Group</span>
@@ -684,6 +690,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=6" defer></script>
+<script src="js/main.js?v=8" defer></script>
 </body>
 </html>

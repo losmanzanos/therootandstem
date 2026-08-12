@@ -232,8 +232,10 @@ strong{font-weight:600}
     linear-gradient(to right,rgba(12,20,15,.55) 0%,transparent 62%);
 }
 .hero-inner{position:relative;z-index:2;width:100%}
+@media (min-width:1100px){.hero-inner{padding-left:calc(var(--gut) + 26px)}}
 .hero .kicker{color:rgba(255,255,255,.8);margin-bottom:26px}
-.hero h1{color:#fff;margin-bottom:30px;max-width:14ch}
+.hero h1{color:#fff;margin-bottom:30px;max-width:none}
+.hero h1 br{display:block}
 .hero-sub{color:rgba(255,255,255,.85);max-width:50ch;font-size:clamp(1rem,1.35vw,1.16rem);margin-bottom:38px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px}
 
@@ -247,13 +249,15 @@ strong{font-weight:600}
 .editorial-fig{margin-top:96px}
 
 .frame{overflow:hidden;border-radius:2px;background:var(--cream-2)}
-/* The reveal clip lives on the inner <picture>, never on .frame itself —
-   clipping the observed element to zero height stops IntersectionObserver
-   from ever seeing it, and it can never reveal itself. */
-.frame picture{display:block;clip-path:inset(0 0 100% 0);transition:clip-path 1.25s var(--e-out)}
-.frame.in picture{clip-path:inset(0 0 0 0)}
-.frame img{width:100%;transform:scale(1.06);transition:transform 1.4s var(--e-out)}
-.frame.in img{transform:none}
+/* Reveal with opacity + a short rise rather than clipping.
+   clip-path:inset(0 0 100%) gives the image zero paint area, and BOTH
+   IntersectionObserver and Chrome's native lazy-loader then decide the
+   image isn't visible — so it never loads at all. Never hide a lazy
+   image by collapsing it; move or fade it instead. */
+.frame picture{display:block;opacity:0;transform:translateY(26px) scale(1.02);
+  transition:opacity .85s var(--e-out),transform 1.05s var(--e-out)}
+.frame.in picture{opacity:1;transform:none}
+.frame img{width:100%;transition:transform 1.2s var(--e-out)}
 .frame.in:hover img{transform:scale(1.04)}
 .frame-tall img{aspect-ratio:4/5;object-fit:cover}
 .frame-sq img{aspect-ratio:3/4;object-fit:cover}
@@ -370,9 +374,9 @@ strong{font-weight:600}
 .join-media img{opacity:.34}
 .join::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(rgba(16,26,20,.7),rgba(16,26,20,.86))}
 .join-inner{position:relative;z-index:2}
-.join h2{color:#fff;margin:16px auto 18px;max-width:16ch}
+.join h2{color:#fff;margin:16px auto 18px;max-width:22ch}
 .join > .shell > p{max-width:52ch;margin-left:auto;margin-right:auto;color:rgba(255,255,255,.75)}
-.signup{display:flex;flex-wrap:wrap;gap:12px;max-width:520px;margin:34px auto 16px}
+.signup{display:flex;flex-wrap:wrap;gap:12px;max-width:540px;margin:34px auto 16px;justify-content:center}
 .signup input{
   flex:1 1 240px;padding:16px 18px;font-family:var(--sans);font-size:.96rem;color:#fff;
   background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.28);border-radius:2px
@@ -485,8 +489,7 @@ strong{font-weight:600}
   *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;animation-iteration-count:1 !important}
   .line > i{transform:none !important}
   .reveal-fade,.rise{opacity:1 !important;transform:none !important}
-  .frame picture{clip-path:none !important}
-  .frame img{transform:none !important}
+  .frame picture{opacity:1 !important;transform:none !important}
   [data-parallax]{transform:none !important}
 }
 
@@ -512,11 +515,44 @@ strong{font-weight:600}
 .egg-note em{font-style:italic;color:var(--clay)}
 
 /* ── Signup: two fields now ────────────────────────────────── */
-.signup input[type="text"]{flex:0 1 168px}
-.signup input[type="email"]{flex:1 1 220px}
+.signup input[type="text"]{flex:1 1 170px}
+.signup input[type="email"]{flex:2 1 240px}
+.signup button[type="submit"]{flex:0 0 auto;margin:6px auto 0;min-width:220px}
 .signup input[aria-invalid="true"]{border-color:#C98A6B}
 @media (max-width:560px){
-  .signup{flex-direction:column}
-  .signup input,.signup .btn{flex:1 1 auto;width:100%}
-  .signup .btn{text-align:center}
+  /* Column direction: flex-grow must be 0 or the inputs stretch vertically */
+  .signup{flex-direction:column;align-items:stretch}
+  /* flex-basis is the MAIN axis — in a column that's height, so it must
+     be reset to auto or the inputs inherit 170px/240px as their height. */
+  .signup input[type="text"],
+  .signup input[type="email"],
+  .signup button[type="submit"]{flex:0 0 auto;width:100%;min-width:0}
+  .signup button[type="submit"]{text-align:center;margin:4px 0 0}
+}
+
+
+/* ── Daylight in Denver ────────────────────────────────────
+   Computed client-side from the NOAA solar equations — no API,
+   no key, no request. Changes every day of the year. */
+.daylight{
+  margin-top:64px;padding:30px 0 4px;border-top:1px solid rgba(255,255,255,.11);
+  display:grid;grid-template-columns:auto 1fr auto;gap:8px 30px;align-items:baseline
+}
+.daylight-label{
+  font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--moss-light);white-space:nowrap
+}
+.daylight-line{
+  font-family:var(--serif);font-size:clamp(1.05rem,1.9vw,1.4rem);line-height:1.35;
+  color:rgba(255,255,255,.9);margin:0
+}
+.daylight-line #dl-delta{display:block;font-size:.82em;font-style:italic;color:var(--moss-light);margin-top:3px}
+.daylight-sun{
+  margin:0;font-size:.76rem;letter-spacing:.1em;color:rgba(255,255,255,.55);
+  display:flex;align-items:center;gap:12px;white-space:nowrap
+}
+.daylight-sun i{width:26px;height:1px;background:rgba(255,255,255,.28);display:block}
+@media (max-width:780px){
+  .daylight{grid-template-columns:1fr;gap:10px;margin-top:46px}
+  .daylight-sun{justify-content:flex-start}
 }

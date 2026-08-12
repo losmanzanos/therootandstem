@@ -15,8 +15,27 @@
      offsetTop so the mask follows real wrapping at any width. */
   function splitLines(el) {
     if (el.dataset.done) return;
-    var text = el.textContent.replace(/\s+/g, ' ').trim();
     var html = el.innerHTML;
+
+    /* An explicit <br> is an authored line break — honour it exactly
+       instead of measuring where the text happens to wrap. */
+    if (/<br\s*\/?>/i.test(html)) {
+      var chunks = html.split(/<br\s*\/?>/i);
+      el.textContent = '';
+      chunks.forEach(function (chunk, i) {
+        var outer = document.createElement('span');
+        outer.className = 'line';
+        outer.style.setProperty('--i', i);
+        var inner = document.createElement('i');
+        inner.innerHTML = chunk.trim();
+        outer.appendChild(inner);
+        el.appendChild(outer);
+      });
+      el.dataset.done = '1';
+      return;
+    }
+
+    var text = el.textContent.replace(/\s+/g, ' ').trim();
     var hasEm = /<em>/i.test(html);
 
     // Rebuild as words, preserving a single <em>…</em> span if present.
@@ -98,6 +117,7 @@
       .forEach(function (el) { el.classList.add('rise'); });
     document.querySelectorAll('.tenets').forEach(function (el) { el.classList.add('stagger'); });
 
+    /* Text can reveal the moment it enters view. */
     var io = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
@@ -106,8 +126,34 @@
       });
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
 
-    document.querySelectorAll('[data-split], .frame, .rise, .stagger, .reveal-fade')
+    document.querySelectorAll('[data-split], .rise, .stagger, .reveal-fade')
       .forEach(function (el) { io.observe(el); });
+
+    /* Images are different: if the reveal fires before the bytes land you
+       watch an empty box wipe in and then the photo pops. So start the
+       observer well ahead of the viewport, and hold the reveal until the
+       image has actually decoded. */
+    var imgIO = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var frame = e.target;
+        obs.unobserve(frame);
+        var img = frame.querySelector('img');
+        if (!img) { frame.classList.add('in'); return; }
+
+        var show = function () { frame.classList.add('in'); };
+        if (img.complete && img.naturalWidth) {
+          (img.decode ? img.decode().catch(function () {}) : Promise.resolve()).then(show);
+        } else {
+          img.addEventListener('load', function () {
+            (img.decode ? img.decode().catch(function () {}) : Promise.resolve()).then(show);
+          }, { once: true });
+          img.addEventListener('error', show, { once: true });
+        }
+      });
+    }, { rootMargin: '600px 0px 400px 0px', threshold: 0 });
+
+    document.querySelectorAll('.frame').forEach(function (el) { imgIO.observe(el); });
   } else {
     document.querySelectorAll('[data-split], .reveal-fade, .frame').forEach(function (el) { el.classList.add('in'); });
   }
@@ -203,6 +249,74 @@
       var mark = document.querySelector('.brand-mark');
       if (mark) { mark.setAttribute('role','img'); mark.setAttribute('aria-label','The mark, now in bloom'); }
     });
+  })();
+
+
+  /* ── 9. Daylight in Denver ────────────────────────────────
+     Sunrise/sunset from the NOAA solar equations, computed on the
+     visitor's machine. No API, no key, no request — and it changes
+     every day of the year. Denver: 39.7392 N, 104.9903 W. */
+  (function () {
+    var box = document.getElementById('daylight');
+    if (!box) return;
+
+    var LAT = 39.7392, LON = -104.9903;
+    var rad = Math.PI / 180;
+
+    function dayLength(date) {
+      // days since 2000-01-01 12:00 UT
+      var n = Math.floor((date - Date.UTC(2000, 0, 1, 12)) / 86400000);
+      var Jstar = n - LON / 360;
+      var M = (357.5291 + 0.98560028 * Jstar) % 360;                 // solar mean anomaly
+      var C = 1.9148 * Math.sin(M * rad) + 0.02 * Math.sin(2 * M * rad)
+            + 0.0003 * Math.sin(3 * M * rad);                        // equation of the centre
+      var L = (M + C + 180 + 102.9372) % 360;                        // ecliptic longitude
+      var Jtransit = 2451545.0 + Jstar + 0.0053 * Math.sin(M * rad)
+            - 0.0069 * Math.sin(2 * L * rad);
+      var decl = Math.asin(Math.sin(L * rad) * Math.sin(23.44 * rad));
+      // −0.833° accounts for refraction and the sun's disc
+      var cosW = (Math.sin(-0.833 * rad) - Math.sin(LAT * rad) * Math.sin(decl)) /
+                 (Math.cos(LAT * rad) * Math.cos(decl));
+      if (cosW >= 1) return null;              // polar night
+      if (cosW <= -1) return { len: 1440, rise: null, set: null };   // midnight sun
+      var w = Math.acos(cosW) / rad;
+      var Jset  = Jtransit + w / 360;
+      var Jrise = Jtransit - w / 360;
+      return {
+        len:  (Jset - Jrise) * 1440,                                  // minutes
+        rise: new Date((Jrise - 2440587.5) * 86400000),
+        set:  new Date((Jset  - 2440587.5) * 86400000)
+      };
+    }
+
+    var now = new Date();
+    var today = dayLength(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+    var prev  = dayLength(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate() - 1));
+    if (!today || !prev) return;
+
+    var h = Math.floor(today.len / 60), m = Math.round(today.len % 60);
+    if (m === 60) { h += 1; m = 0; }
+    document.getElementById('dl-len').textContent =
+      h + ' hours ' + m + ' minutes of daylight.';
+
+    var diff = Math.round((today.len - prev.len) * 60);   // seconds
+    var a = Math.abs(diff), mm = Math.floor(a / 60), ss = a % 60;
+    var amount = mm ? (mm + ' min ' + ss + ' sec') : (ss + ' seconds');
+    document.getElementById('dl-delta').textContent =
+      diff === 0 ? 'The same as yesterday.'
+      : diff > 0 ? amount + ' more than yesterday.'
+                 : amount + ' less than yesterday.';
+
+    if (today.rise && today.set) {
+      var fmt = function (d) {
+        return d.toLocaleTimeString('en-US', {
+          hour: 'numeric', minute: '2-digit', timeZone: 'America/Denver'
+        }).toLowerCase().replace(' ', '');
+      };
+      document.getElementById('dl-rise').textContent = 'Sunrise ' + fmt(today.rise);
+      document.getElementById('dl-set').textContent  = 'Sunset '  + fmt(today.set);
+    }
+    box.hidden = false;
   })();
 
   /* ── 7. Sundries ──────────────────────────────────────────── */
