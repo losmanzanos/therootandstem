@@ -184,6 +184,27 @@
     });
   });
 
+
+  /* ── 8. "bloom" ───────────────────────────────────────────
+     The headline says "before the bloom". Type the word and the
+     bud in the mark opens. Nothing else on the page announces it. */
+  (function () {
+    var buf = '', WORD = 'bloom';
+    document.addEventListener('keydown', function (e) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      var t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      if (!/^[a-z]$/i.test(e.key)) return;
+      buf = (buf + e.key.toLowerCase()).slice(-WORD.length);
+      if (buf !== WORD || document.body.classList.contains('bloomed')) return;
+      document.body.classList.add('bloomed');
+      var note = document.querySelector('.egg-note');
+      if (note) note.hidden = false;
+      var mark = document.querySelector('.brand-mark');
+      if (mark) { mark.setAttribute('role','img'); mark.setAttribute('aria-label','The mark, now in bloom'); }
+    });
+  })();
+
   /* ── 7. Sundries ──────────────────────────────────────────── */
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();

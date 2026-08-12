@@ -9,45 +9,255 @@
 <meta name="robots" content="index,follow,max-image-preview:large">
 
 <link rel="canonical" href="https://therootandstem.com/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Site summary for language models">
+<meta name="author" content="The Root and Stem">
+<meta name="geo.region" content="US-CO">
+<meta name="geo.placename" content="Denver, Colorado">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Root and Stem">
 <meta property="og:title" content="Therapist Trainings &amp; Retreats in Colorado | The Root and Stem">
 <meta property="og:description" content="Small-cohort trainings, retreats, consultation and supervision for therapists. A branch of Full Bloom Counseling.">
 <meta property="og:url" content="https://therootandstem.com/">
-<meta property="og:image" content="https://therootandstem.com/images/hero-stems.jpg">
+<meta property="og:image" content="https://therootandstem.com/images/og-card.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Therapist Trainings &amp; Retreats in Colorado | The Root and Stem">
 <meta name="twitter:description" content="Small-cohort trainings, retreats, consultation and supervision for therapists.">
-<meta name="twitter:image" content="https://therootandstem.com/images/hero-stems.jpg">
+<meta name="twitter:image" content="https://therootandstem.com/images/og-card.jpg">
 
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="fonts/cormorant-garamond-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/dm-sans-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="images/hero-stems.webp" type="image/webp">
-<link rel="stylesheet" href="css/style.css?v=5">
+<link rel="preload" href="fonts/spectral-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/familjen-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/webp" href="images/hero-stems-1440.webp"
+      imagesrcset="images/hero-stems-640.webp 640w, images/hero-stems-1024.webp 1024w, images/hero-stems-1440.webp 1440w, images/hero-stems-1920.webp 1920w, images/hero-stems-2400.webp 2400w"
+      imagesizes="100vw" fetchpriority="high">
+<link rel="stylesheet" href="css/style.css?v=6">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "name": "The Root and Stem",
-  "alternateName": "The Root and Stem — a branch of Full Bloom Counseling",
-  "description": "Trainings, retreats, consultation groups and clinical supervision for therapists.",
-  "url": "https://therootandstem.com/",
-  "email": "hello@therootandstem.com",
-  "telephone": "+1-720-767-9808",
-  "areaServed": { "@type": "State", "name": "Colorado" },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "1780 S Bellaire St #485",
-    "addressLocality": "Denver", "addressRegion": "CO",
-    "postalCode": "80222", "addressCountry": "US"
-  },
-  "parentOrganization": {
-    "@type": "Organization",
-    "name": "Full Bloom Counseling Group",
-    "url": "https://fullbloomcounseling.com/"
-  }
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": "https://therootandstem.com/#org",
+      "name": "The Root and Stem",
+      "alternateName": "The Root and Stem — a branch of Full Bloom Counseling",
+      "description": "Trainings, retreats, consultation groups and clinical supervision for therapists.",
+      "url": "https://therootandstem.com/",
+      "email": "hello@therootandstem.com",
+      "telephone": "+1-720-767-9808",
+      "logo": "https://therootandstem.com/images/logo-lockup.svg",
+      "image": "https://therootandstem.com/images/og-card.jpg",
+      "slogan": "Before the bloom, the root.",
+      "areaServed": {
+        "@type": "State",
+        "name": "Colorado"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1780 S Bellaire St #485",
+        "addressLocality": "Denver",
+        "addressRegion": "CO",
+        "postalCode": "80222",
+        "addressCountry": "US"
+      },
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Full Bloom Counseling Group",
+        "url": "https://fullbloomcounseling.com/"
+      },
+      "knowsAbout": [
+        "Clinical supervision",
+        "Continuing education for therapists",
+        "Couples therapy training",
+        "Enneagram in clinical practice",
+        "Health at Every Size",
+        "Trauma-informed care",
+        "Therapist burnout"
+      ],
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Licensed and pre-licensed mental health clinicians"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://therootandstem.com/#site",
+      "url": "https://therootandstem.com/",
+      "name": "The Root and Stem",
+      "publisher": {
+        "@id": "https://therootandstem.com/#org"
+      },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://therootandstem.com/#page",
+      "url": "https://therootandstem.com/",
+      "name": "Therapist Trainings & Retreats in Colorado | The Root and Stem",
+      "isPartOf": {
+        "@id": "https://therootandstem.com/#site"
+      },
+      "about": {
+        "@id": "https://therootandstem.com/#org"
+      },
+      "primaryImageOfPage": "https://therootandstem.com/images/og-card.jpg",
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://therootandstem.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do these count for continuing education credit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CE approval is in progress. Once it's confirmed, the hours and the approving body will be listed on each training that carries credit — and on the ones that don't, we'll say so. Retreats are built around rest rather than contact hours, so most of those won't carry CE. We'd rather be plain about it than stretch a definition to make a weekend sound deductible."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who are the trainings for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Licensed therapists, pre-licensed clinicians accruing hours, and graduate students in a clinical programme. A few offerings are aimed at a narrower group — supervisors, practice owners, clinicians already trained in a particular modality — and those say so at the top. If you're unsure, email and describe your setting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does a retreat weekend look like?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You arrive Friday afternoon and settle in. Saturday and Sunday mornings hold three hours of teaching. Afternoons are unscheduled. Meals are together and optional. You leave Monday morning."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I have to be connected to Full Bloom?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Most people who come through are from other practices, agencies, hospital systems or solo work. Full Bloom clinicians are in the room too, which tends to make the case discussion better rather than more insular."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there financial assistance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Two seats in every cohort are held at a reduced rate for clinicians in their first few years, or working in community mental health, or in a stretch of year where the full fee isn't happening. There's no application and no essay. You email and ask, and we say yes until the seats are gone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you bring a training to our practice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We run private trainings for group practices, agencies and clinical teams, at your site or ours. Tell us the size of your team, what you keep running into, and roughly what you have to work with."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the cancellation policy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Full refund up to 30 days before. Half up to 14 days. After that it becomes credit toward a future offering. Illness, a family emergency, a client crisis you can't hand off — those get handled case by case, and we have never been rigid about it."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://therootandstem.com/#offerings",
+      "name": "What The Root and Stem offers",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Course",
+            "name": "Trainings & Workshops",
+            "description": "Half and full-day clinical intensives for therapists, in person in Denver and online. CE offered where stated.",
+            "provider": {
+              "@id": "https://therootandstem.com/#org"
+            },
+            "courseMode": [
+              "Onsite",
+              "Online"
+            ],
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Blended",
+              "courseWorkload": "PT6H",
+              "location": {
+                "@type": "Place",
+                "name": "Denver, Colorado"
+              }
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Course",
+            "name": "Retreats",
+            "description": "Two to three night residential retreats in Colorado for 12–16 therapists. Teaching in the mornings, unstructured afternoons.",
+            "provider": {
+              "@id": "https://therootandstem.com/#org"
+            },
+            "courseMode": "Onsite",
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "courseWorkload": "P3D",
+              "location": {
+                "@type": "Place",
+                "name": "Colorado"
+              }
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Course",
+            "name": "Consultation Groups",
+            "description": "Year-long monthly consultation cohorts of six to eight licensed clinicians. Any licence, any setting.",
+            "provider": {
+              "@id": "https://therootandstem.com/#org"
+            },
+            "courseMode": "Online",
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Online",
+              "courseSchedule": {
+                "@type": "Schedule",
+                "repeatFrequency": "P1M",
+                "duration": "P1Y"
+              }
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "Service",
+            "name": "Supervision & Mentorship",
+            "description": "Individual and dyadic supervision toward LPC and LMFT licensure in Colorado with an AAMFT Approved Supervisor, plus practice mentorship.",
+            "provider": {
+              "@id": "https://therootandstem.com/#org"
+            },
+            "areaServed": {
+              "@type": "State",
+              "name": "Colorado"
+            }
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 </head>
@@ -70,6 +280,14 @@
         </g>
         <path class="brand-bud" d="M32 2.5 C36.4 7.2 38.4 11 38.4 14.4 C38.4 18.2 35.6 20.8 32 20.8 C28.4 20.8 25.6 18.2 25.6 14.4 C25.6 11 27.6 7.2 32 2.5 Z" fill="currentColor"/>
         <path d="M32 33 C26.2 32.2 23.4 28.8 23.4 25.4 C27.8 25.4 31.2 28.2 32 33 Z" fill="currentColor"/>
+        <g class="brand-flower" aria-hidden="true">
+          <ellipse cx="32" cy="7.2" rx="3.5" ry="7" transform="rotate(0 32 14)"/>
+          <ellipse cx="32" cy="7.2" rx="3.5" ry="7" transform="rotate(72 32 14)"/>
+          <ellipse cx="32" cy="7.2" rx="3.5" ry="7" transform="rotate(144 32 14)"/>
+          <ellipse cx="32" cy="7.2" rx="3.5" ry="7" transform="rotate(216 32 14)"/>
+          <ellipse cx="32" cy="7.2" rx="3.5" ry="7" transform="rotate(288 32 14)"/>
+          <circle class="brand-eye" cx="32" cy="14" r="2.6"/>
+        </g>
       </svg>
       <span class="brand-type">
         <span class="brand-name">The Root <em>and</em> Stem</span>
@@ -108,8 +326,9 @@
 <section class="hero">
   <div class="hero-media" data-parallax="0.18">
     <picture>
-      <source srcset="images/hero-stems.webp" type="image/webp">
-      <img src="images/hero-stems.jpg" alt="A field of tall grass and flower stems standing in early morning mist" fetchpriority="high" width="2400" height="1350">
+      <source type="image/webp" srcset="images/hero-stems-640.webp 640w, images/hero-stems-1024.webp 1024w, images/hero-stems-1440.webp 1440w, images/hero-stems-1920.webp 1920w, images/hero-stems-2400.webp 2400w" sizes="100vw">
+      <source type="image/jpeg" srcset="images/hero-stems-640.jpg 640w, images/hero-stems-1024.jpg 1024w, images/hero-stems-1440.jpg 1440w, images/hero-stems-1920.jpg 1920w, images/hero-stems-2400.jpg 2400w" sizes="100vw">
+      <img src="images/hero-stems-2400.jpg" alt="A field of tall grass and flower stems standing in early morning mist" width="2400" height="1350" fetchpriority="high" decoding="async">
     </picture>
   </div>
   <div class="hero-veil" aria-hidden="true"></div>
@@ -154,9 +373,10 @@
 
       <figure class="editorial-fig frame" data-parallax="-0.06">
         <picture>
-          <source srcset="images/room.webp" type="image/webp">
-          <img src="images/room.jpg" alt="Late afternoon light falling across the floor of an empty room" width="1200" height="1500" loading="lazy">
-        </picture>
+      <source type="image/webp" srcset="images/room-480.webp 480w, images/room-800.webp 800w, images/room-1200.webp 1200w" sizes="(max-width:680px) 92vw, (max-width:1180px) 560px, 420px">
+      <source type="image/jpeg" srcset="images/room-480.jpg 480w, images/room-800.jpg 800w, images/room-1200.jpg 1200w" sizes="(max-width:680px) 92vw, (max-width:1180px) 560px, 420px">
+      <img src="images/room-1200.jpg" alt="Late afternoon light falling across the floor of an empty room" width="1200" height="1500" loading="lazy" decoding="async">
+    </picture>
       </figure>
     </div>
   </div>
@@ -215,8 +435,9 @@
 <section class="interlude">
   <div class="interlude-media" data-parallax="0.12">
     <picture>
-      <source srcset="images/roots.webp" type="image/webp">
-      <img src="images/roots.jpg" alt="A tree's root system exposed in a cut bank of soil" width="1600" height="1200" loading="lazy">
+      <source type="image/webp" srcset="images/roots-640.webp 640w, images/roots-1024.webp 1024w, images/roots-1400.webp 1400w" sizes="100vw">
+      <source type="image/jpeg" srcset="images/roots-640.jpg 640w, images/roots-1024.jpg 1024w, images/roots-1400.jpg 1400w" sizes="100vw">
+      <img src="images/roots-1400.jpg" alt="A tree&#39;s root system exposed in a cut bank of soil" width="1400" height="1050" loading="lazy" decoding="async">
     </picture>
   </div>
   <div class="interlude-inner shell">
@@ -231,9 +452,10 @@
     <div class="split-feature">
       <figure class="frame frame-tall" data-parallax="-0.05">
         <picture>
-          <source srcset="images/cabin.webp" type="image/webp">
-          <img src="images/cabin.jpg" alt="A timber lodge among tall trees" width="1800" height="1200" loading="lazy">
-        </picture>
+      <source type="image/webp" srcset="images/cabin-640.webp 640w, images/cabin-1024.webp 1024w, images/cabin-1500.webp 1500w" sizes="(max-width:940px) 92vw, 620px">
+      <source type="image/jpeg" srcset="images/cabin-640.jpg 640w, images/cabin-1024.jpg 1024w, images/cabin-1500.jpg 1500w" sizes="(max-width:940px) 92vw, 620px">
+      <img src="images/cabin-1500.jpg" alt="A timber lodge among tall trees" width="1500" height="1000" loading="lazy" decoding="async">
+    </picture>
       </figure>
 
       <div class="split-feature-body">
@@ -305,9 +527,10 @@
     <div class="teach">
       <figure class="frame frame-sq" data-parallax="-0.04">
         <picture>
-          <source srcset="images/seedhead.webp" type="image/webp">
-          <img src="images/seedhead.jpg" alt="A dried seed head still standing on its stem" width="900" height="1260" loading="lazy">
-        </picture>
+      <source type="image/webp" srcset="images/seedhead-450.webp 450w, images/seedhead-700.webp 700w, images/seedhead-900.webp 900w" sizes="(max-width:940px) 92vw, 520px">
+      <source type="image/jpeg" srcset="images/seedhead-450.jpg 450w, images/seedhead-700.jpg 700w, images/seedhead-900.jpg 900w" sizes="(max-width:940px) 92vw, 520px">
+      <img src="images/seedhead-900.jpg" alt="A dried seed head still standing on its stem" width="900" height="1260" loading="lazy" decoding="async">
+    </picture>
       </figure>
       <div>
         <span class="index">06</span>
@@ -392,8 +615,9 @@
 <section class="section pad-xl join" id="join">
   <div class="join-media" data-parallax="0.1">
     <picture>
-      <source srcset="images/leaves.webp" type="image/webp">
-      <img src="images/leaves.jpg" alt="" role="presentation" width="1600" height="1000" loading="lazy">
+      <source type="image/webp" srcset="images/leaves-640.webp 640w, images/leaves-1024.webp 1024w, images/leaves-1600.webp 1600w" sizes="100vw">
+      <source type="image/jpeg" srcset="images/leaves-640.jpg 640w, images/leaves-1024.jpg 1024w, images/leaves-1600.jpg 1600w" sizes="100vw">
+      <img src="images/leaves-1600.jpg" alt="" width="1600" height="1000" role="presentation" loading="lazy" decoding="async">
     </picture>
   </div>
   <div class="shell join-inner">
@@ -406,6 +630,8 @@
          Kit's own embed script isn't needed, which keeps the site free of
          third-party JS. If fetch fails, it falls back to a normal form POST. -->
     <form class="signup" action="https://app.kit.com/forms/9795875/subscriptions" method="post" novalidate>
+      <label class="sr-only" for="fname">First name</label>
+      <input id="fname" type="text" name="fields[first_name]" placeholder="First name" autocomplete="given-name">
       <label class="sr-only" for="email">Email address</label>
       <input id="email" type="email" name="email_address" placeholder="you@yourpractice.com" required autocomplete="email">
       <button class="btn btn-solid-light" type="submit">Join the list</button>
@@ -453,10 +679,11 @@
     <div class="foot-base">
       <span>© <span id="year">2026</span> The Root and Stem</span>
       <span>A branch of Full Bloom Counseling Group</span>
+      <span class="egg-note" hidden>Took you long enough. <em>Now</em> it's a bloom.</span>
     </div>
   </div>
 </footer>
 
-<script src="js/main.js?v=5" defer></script>
+<script src="js/main.js?v=6" defer></script>
 </body>
 </html>
