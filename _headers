@@ -5,11 +5,18 @@
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
-# Fingerprinted by ?v= — safe to cache hard
+# CSS and JS are versioned with ?v= — which is NOT a safe cache key to mark
+# immutable. If the edge caches ?v=N mid-deploy it pins the stale file for a
+# year and there is no way to bust it short of a manual purge. These files are
+# ~6KB brotli'd, so revalidating every request costs nothing and can't go stale.
 /css/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=0, must-revalidate
 /js/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=0, must-revalidate
+
+# These are safe to pin: the filename itself encodes the content
+# (hero-stems-1440.webp, spectral-400-normal-latin.woff2). A different
+# image or weight is a different filename, never the same URL.
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *

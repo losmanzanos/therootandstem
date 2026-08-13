@@ -218,7 +218,7 @@ strong{font-weight:600}
 .drawer > .btn{display:block;margin:22px var(--gut) 30px;text-align:center}
 
 /* ── Hero ─────────────────────────────────────────────────── */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:calc(var(--nav-h) + 80px) 0 110px;overflow:hidden;background:var(--forest-deep)}
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:calc(var(--nav-h) + 60px) 0 90px;overflow:hidden;background:var(--forest-deep)}
 /* <picture> is a real box between the wrapper and the <img>; without an
    explicit height here the img's height:100% has nothing to resolve
    against and the photo stops short of filling the section. */
@@ -228,16 +228,16 @@ strong{font-weight:600}
 .hero-veil{
   position:absolute;inset:0;z-index:1;
   background:
-    linear-gradient(to bottom,rgba(12,20,15,.66) 0%,rgba(12,20,15,.20) 34%,rgba(12,20,15,.55) 72%,rgba(12,20,15,.90) 100%),
-    linear-gradient(to right,rgba(12,20,15,.55) 0%,transparent 62%);
+    linear-gradient(to bottom,rgba(12,20,15,.62) 0%,rgba(12,20,15,.30) 30%,rgba(12,20,15,.52) 68%,rgba(12,20,15,.88) 100%),
+    radial-gradient(120% 85% at 50% 50%, rgba(12,20,15,.52) 0%, rgba(12,20,15,.18) 55%, transparent 100%);
 }
 .hero-inner{position:relative;z-index:2;width:100%}
-@media (min-width:1100px){.hero-inner{padding-left:calc(var(--gut) + 26px)}}
+
 .hero .kicker{color:rgba(255,255,255,.8);margin-bottom:26px}
-.hero h1{color:#fff;margin-bottom:30px;max-width:none}
+.hero h1{color:#fff;margin:0 auto 30px;max-width:none}
 .hero h1 br{display:block}
-.hero-sub{color:rgba(255,255,255,.85);max-width:50ch;font-size:clamp(1rem,1.35vw,1.16rem);margin-bottom:38px}
-.hero-cta{display:flex;flex-wrap:wrap;gap:14px}
+.hero-sub{color:rgba(255,255,255,.85);max-width:54ch;font-size:clamp(1rem,1.35vw,1.16rem);margin:0 auto 38px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
 
 
 
@@ -348,6 +348,8 @@ strong{font-weight:600}
 .kin{display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center;
   border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:56px 0}
 .kin-mark{width:64px;height:64px;color:var(--moss);flex-shrink:0}
+.kin-mark .brand-flower ellipse{fill:var(--clay)}
+.kin-mark .brand-eye{fill:var(--clay-dark)}
 .kin h2{margin:8px 0 16px}
 .kin p{color:var(--ink-soft);max-width:62ch}
 .kin .link-arrow{margin-top:22px}
@@ -459,7 +461,7 @@ strong{font-weight:600}
   body{font-size:16px}
   .pad-lg{padding:76px 0}
   .pad-xl{padding:88px 0}
-  .hero{min-height:92svh;padding:calc(var(--nav-h) + 60px) 0 76px}
+  .hero{min-height:92svh;padding:calc(var(--nav-h) + 50px) 0 70px}
   /* Portrait crop lands in the fog; bias down to the treeline and
      deepen the veil where the copy sits. */
   .hero-media img{object-position:50% 68%}
@@ -535,9 +537,13 @@ strong{font-weight:600}
    Computed client-side from the NOAA solar equations — no API,
    no key, no request. Changes every day of the year. */
 .daylight{
-  margin-top:64px;padding:30px 0 4px;border-top:1px solid rgba(255,255,255,.11);
-  display:grid;grid-template-columns:auto 1fr auto;gap:8px 30px;align-items:baseline
+  margin-top:64px;padding:34px 0 4px;border-top:1px solid rgba(255,255,255,.11);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 56px;align-items:start
 }
+.daylight-why{
+  margin:10px 0 0;max-width:44ch;font-size:.88rem;line-height:1.65;color:rgba(255,255,255,.6)
+}
+.daylight-data{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 .daylight-label{
   font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
   color:var(--moss-light);white-space:nowrap
@@ -548,11 +554,11 @@ strong{font-weight:600}
 }
 .daylight-line #dl-delta{display:block;font-size:.82em;font-style:italic;color:var(--moss-light);margin-top:3px}
 .daylight-sun{
-  margin:0;font-size:.76rem;letter-spacing:.1em;color:rgba(255,255,255,.55);
+  margin:0;font-size:.76rem;letter-spacing:.1em;color:rgba(255,255,255,.6);
   display:flex;align-items:center;gap:12px;white-space:nowrap
 }
 .daylight-sun i{width:26px;height:1px;background:rgba(255,255,255,.28);display:block}
 @media (max-width:780px){
-  .daylight{grid-template-columns:1fr;gap:10px;margin-top:46px}
+  .daylight{grid-template-columns:1fr;gap:18px;margin-top:46px}
   .daylight-sun{justify-content:flex-start}
 }

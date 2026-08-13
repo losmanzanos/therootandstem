@@ -27,10 +27,10 @@
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/spectral-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/familjen-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" type="image/webp" href="images/hero-stems-1440.webp"
-      imagesrcset="images/hero-stems-640.webp 640w, images/hero-stems-1024.webp 1024w, images/hero-stems-1440.webp 1440w, images/hero-stems-1920.webp 1920w, images/hero-stems-2400.webp 2400w"
+<link rel="preload" as="image" type="image/webp" href="images/hero-bloom-1440.webp"
+      imagesrcset="images/hero-bloom-640.webp 640w, images/hero-bloom-1024.webp 1024w, images/hero-bloom-1440.webp 1440w, images/hero-bloom-1920.webp 1920w, images/hero-bloom-2400.webp 2400w"
       imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="css/style.css?v=8">
+<link rel="stylesheet" href="css/style.css?v=10">
 
 <script type="application/ld+json">
 {
@@ -326,9 +326,9 @@
 <section class="hero">
   <div class="hero-media" data-parallax="0.18">
     <picture>
-      <source type="image/webp" srcset="images/hero-stems-640.webp 640w, images/hero-stems-1024.webp 1024w, images/hero-stems-1440.webp 1440w, images/hero-stems-1920.webp 1920w, images/hero-stems-2400.webp 2400w" sizes="100vw">
-      <source type="image/jpeg" srcset="images/hero-stems-640.jpg 640w, images/hero-stems-1024.jpg 1024w, images/hero-stems-1440.jpg 1440w, images/hero-stems-1920.jpg 1920w, images/hero-stems-2400.jpg 2400w" sizes="100vw">
-      <img src="images/hero-stems-2400.jpg" alt="A field of tall grass and flower stems standing in early morning mist" width="2400" height="1350" fetchpriority="high" decoding="async">
+      <source type="image/webp" srcset="images/hero-bloom-640.webp 640w, images/hero-bloom-1024.webp 1024w, images/hero-bloom-1440.webp 1440w, images/hero-bloom-1920.webp 1920w, images/hero-bloom-2400.webp 2400w" sizes="100vw">
+      <source type="image/jpeg" srcset="images/hero-bloom-640.jpg 640w, images/hero-bloom-1024.jpg 1024w, images/hero-bloom-1440.jpg 1440w, images/hero-bloom-1920.jpg 1920w, images/hero-bloom-2400.jpg 2400w" sizes="100vw">
+      <img src="images/hero-bloom-2400.jpg" alt="Cosmos flowers and unopened buds on tall stems against a deep blue-green dusk" width="2400" height="1350" fetchpriority="high" decoding="async">
     </picture>
   </div>
   <div class="hero-veil" aria-hidden="true"></div>
@@ -556,8 +556,16 @@
           <path d="M32 47 C32 54 37.5 57 42.5 61"/>
           <path d="M32 47 V61"/>
         </g>
-        <path d="M32 2.5 C36.4 7.2 38.4 11 38.4 14.4 C38.4 18.2 35.6 20.8 32 20.8 C28.4 20.8 25.6 18.2 25.6 14.4 C25.6 11 27.6 7.2 32 2.5 Z" fill="currentColor"/>
+        <path class="brand-bud" d="M32 2.5 C36.4 7.2 38.4 11 38.4 14.4 C38.4 18.2 35.6 20.8 32 20.8 C28.4 20.8 25.6 18.2 25.6 14.4 C25.6 11 27.6 7.2 32 2.5 Z" fill="currentColor"/>
         <path d="M32 33 C26.2 32.2 23.4 28.8 23.4 25.4 C27.8 25.4 31.2 28.2 32 33 Z" fill="currentColor"/>
+        <g class="brand-flower" aria-hidden="true">
+          <ellipse cx="32" cy="7.2" rx="3.5" ry="7" transform="rotate(0 32 14)"/>
+          <ellipse cx="32" cy="7.2" rx="3.5" ry="7" transform="rotate(72 32 14)"/>
+          <ellipse cx="32" cy="7.2" rx="3.5" ry="7" transform="rotate(144 32 14)"/>
+          <ellipse cx="32" cy="7.2" rx="3.5" ry="7" transform="rotate(216 32 14)"/>
+          <ellipse cx="32" cy="7.2" rx="3.5" ry="7" transform="rotate(288 32 14)"/>
+          <circle class="brand-eye" cx="32" cy="14" r="2.6"/>
+        </g>
       </svg>
       <div>
         <span class="label">Our people</span>
@@ -677,9 +685,16 @@
       </div>
     </div>
     <div class="daylight" id="daylight" hidden>
-      <span class="daylight-label">Today in Denver</span>
-      <p class="daylight-line"><span id="dl-len"></span><span id="dl-delta"></span></p>
-      <p class="daylight-sun"><span id="dl-rise"></span><i></i><span id="dl-set"></span></p>
+      <div class="daylight-head">
+        <span class="daylight-label">Light in Denver today</span>
+        <p class="daylight-why">A stem can't manufacture light. It can only lean toward
+          whatever there is. Worth knowing how much that is — for your clients in
+          February, and for you.</p>
+      </div>
+      <div class="daylight-data">
+        <p class="daylight-line"><span id="dl-len"></span><span id="dl-delta"></span></p>
+        <p class="daylight-sun"><span id="dl-rise"></span><i></i><span id="dl-set"></span></p>
+      </div>
     </div>
 
     <div class="foot-base">
@@ -690,6 +705,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=8" defer></script>
+<script src="js/main.js?v=10" defer></script>
 </body>
 </html>
