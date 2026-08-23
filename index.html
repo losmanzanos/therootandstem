@@ -196,11 +196,23 @@ body.inside { --amb:var(--paper-lit); --glow:1; --bleed:1;
 /* ─── the plate ──────────────────────────────────────────── */
 .plate{
   position:relative; isolation:isolate;
-  background:var(--amb);
+  background:none;
   aspect-ratio:885/758;
   width:100%; max-height:84svh; margin-inline:auto;
-  transition:background-color 2.6s var(--e);
   order:2;
+}
+/* isolation:isolate above means .ink's multiply blends against this group's own
+   contents rather than the page. The ambient fill used to live on .plate itself,
+   so it stopped dead at inset:0 while .glow and .bleed spill to -12% — multiply
+   had an opaque backdrop inside the plate rectangle and a transparent one just
+   outside it, and that difference drew a faint rectangle around the greenhouse.
+   Same colour, same transition, just carried on a layer that reaches as far as
+   the light does. --amb is what html and body are painted in too, so the outer
+   edge of this box is invisible by construction. */
+.plate::after{
+  content:""; position:absolute; inset:-12%; z-index:-1; pointer-events:none;
+  background:var(--amb);
+  transition:background-color 2.6s var(--e);
 }
 
 /* both light layers sit on a box 124% the size of the plate, which is
@@ -208,38 +220,21 @@ body.inside { --amb:var(--paper-lit); --glow:1; --bleed:1;
    lands pixel-for-pixel over the engraving at any box size */
 .bleed, .glow{
   position:absolute; inset:-12%; pointer-events:none;
-  -webkit-mask-size:100.8% 100.8%;     mask-size:100.8% 100.8%;
+  -webkit-mask-size:contain;           mask-size:contain;
   -webkit-mask-position:center;        mask-position:center;
   -webkit-mask-repeat:no-repeat;       mask-repeat:no-repeat;
   transition:opacity 2.6s var(--e);
 }
 
 /* the rim: light escaping the glass, dying within a hand's width of it */
-/* The mask lives on the child and the blur on the parent, which looks redundant
-   but is the whole fix. CSS applies mask AFTER filter, so with both on one element
-   the 22px blur softened the gradient and then the mask sliced the soft result off
-   along the building's footprint — a flat, dead-straight terminator right under the
-   greenhouse, which is the grey line. Masking the child first and blurring the
-   parent's rendered output reverses that order, so the 22px blur lands on the mask
-   edge itself and the spill dies out instead of stopping. */
 .bleed{
   z-index:0; opacity:var(--bleed);
-  -webkit-mask-image:none; mask-image:none;
-  filter:blur(22px);
-}
-.bleed::before{
-  content:""; position:absolute; inset:0;
   -webkit-mask-image:var(--m-bleed);
           mask-image:var(--m-bleed);
-  /* 100.8% rather than contain: at contain the mask's last row of pixels is
-     interpolated toward transparent, leaving a hairline of partial alpha along
-     the box edge. The overscan pushes that row outside the box. */
-  -webkit-mask-size:100.8% 100.8%;     mask-size:100.8% 100.8%;
-  -webkit-mask-position:center;        mask-position:center;
-  -webkit-mask-repeat:no-repeat;       mask-repeat:no-repeat;
   background:
     radial-gradient(ellipse 58% 46% at 46% 62%,
       rgba(236,168,104,.50) 0%, rgba(222,148,88,.26) 46%, rgba(198,128,78,.10) 74%, transparent 92%);
+  filter:blur(22px);
 }
 
 /* the light inside the glass */
@@ -274,17 +269,20 @@ body.inside { --amb:var(--paper-lit); --glow:1; --bleed:1;
 }
 
 .plate .ink, .plate .rim{
-  position:absolute; inset:0; z-index:2; pointer-events:none;
+  /* -12% and 80.6452%, which cancel out: 0.806452 x 1.24 = 1.0, so the engraving
+     renders at exactly the same size and centre as it did at inset:0 / contain.
+     Only the ELEMENT's box grows, and that is the point. The plate's artwork is
+     drawn on paper that is very slightly off-white, so multiply darkens whatever
+     is behind it by a percent or so — uniformly, across the whole box. With the
+     box at inset:0 and .glow spilling to -12%, that percent applied inside the
+     plate rectangle and not outside it, and the seam between the two read as a
+     faint rectangle around the greenhouse. Matching .glow's box moves the seam
+     out to where the glow has already fallen to nothing, so there is nothing left
+     for it to step against. */
+  position:absolute; inset:-12%; z-index:2; pointer-events:none;
   background-image:var(--ink-src);
-  /* 100.8%, not `contain`. At `contain` the artwork lands flush on the box edge
-     and the final row of pixels gets interpolated toward transparent — a hairline
-     of partial alpha. .ink multiplies it (faint grey rule) and .rim inverts it to
-     near-white and screens it (bright hairline). That was the grey line sitting
-     under the greenhouse on phones. Overscanning by .8% pushes the interpolated
-     edge just outside the box, where it is clipped away. Both axes get the same
-     figure, so the aspect ratio — and therefore the mask alignment — is untouched;
-     the .4% trimmed off each side is a third of a pixel at this size. */
-  background-size:100.8% 100.8%; background-position:center; background-repeat:no-repeat;
+  background-size:80.6452% 80.6452%;
+  background-position:center; background-repeat:no-repeat;
 }
 /* black ink on white → multiply: paper becomes the light behind it */
 .ink{ mix-blend-mode:multiply; opacity:0;
