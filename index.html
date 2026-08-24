@@ -684,8 +684,8 @@ body.lit .foot, body.ajar .foot, body.inside .foot{opacity:1}
       </div>
 
       <div class="done" id="done">
-        <p>You're in. Check your inbox — there's something waiting, and it isn't a receipt.</p>
-        <p class="aside">If it hasn't turned up, have a look in your spam folder. Filters can be funny about a first hello.</p>
+        <p>You're in. Nothing to confirm — we'll write when there's something worth telling you.</p>
+        <p class="aside">When that first note arrives, check your spam folder if it isn't in your inbox. Filters can be funny about a first hello.</p>
       </div>
     </div>
   </div>
@@ -697,8 +697,10 @@ body.lit .foot, body.ajar .foot, body.inside .foot{opacity:1}
 <script>
 (() => {
 'use strict';
-/* Live. Posts to the "Root and Stem — Join the list" form on Kit;
-   double opt-in is on there, so Kit sends the confirmation email. */
+/* Live. Posts to the "Root and Stem — Join the list" form on Kit. That form has
+   "Auto-confirm new subscribers" on and the confirmation email off, so a signup
+   lands as Confirmed immediately and Kit sends nothing — which is why the payoff
+   copy no longer tells anyone to go and check their inbox. */
 const DEMO = false;
 const KIT_ACTION = 'https://app.kit.com/forms/9795875/subscriptions';
 
