@@ -344,12 +344,20 @@
       var input = form.querySelector('input[type="email"]');
       var addr = (input && input.value || '').trim();
 
-      if (!addr || addr.indexOf('@') < 1) {
+      /* First and last name are both asked for, so Kit has a whole name to
+         greet people by. The first empty field (or a bad address) gets focus. */
+      var bad = [].slice.call(form.querySelectorAll('input[type="text"]'))
+        .filter(function (el) { return !el.value.trim(); });
+      if (!addr || addr.indexOf('@') < 1) bad.push(input);
+      [].slice.call(form.querySelectorAll('input')).forEach(function (el) {
+        if (bad.indexOf(el) === -1) el.removeAttribute('aria-invalid');
+        else el.setAttribute('aria-invalid', 'true');
+      });
+      if (bad.length) {
         e.preventDefault();
-        if (input) { input.focus(); input.setAttribute('aria-invalid', 'true'); }
+        bad[0].focus();
         return;
       }
-      if (input) input.removeAttribute('aria-invalid');
 
       /* No endpoint yet — fall back to the visitor's mail client. */
       if (action === '#') {
@@ -377,8 +385,11 @@
       })
         .then(function (r) {
           if (!r.ok) throw new Error(r.status);
-          form.innerHTML = '<p class="signup-done">You’re on the list. ' +
-            'Watch for a confirmation email — it decides whether the rest arrive.</p>';
+          /* Kit form 9795875 auto-confirms and sends no confirmation email, so
+             there is nothing to go and click — same promise as the teaser made. */
+          form.innerHTML = '<p class="signup-done">You’re in. Nothing to confirm — ' +
+            'we’ll write when there’s something worth telling you. If that first note ' +
+            'isn’t in your inbox, check spam; filters can be funny about a first hello.</p>';
           say('');
         })
         .catch(function () {

@@ -94,6 +94,17 @@ graded off its native cold blue toward the site's warm forest tones.
 
 ## Launch state
 
+**Launched October 2026.** The full site is now `index.html`. The old greenhouse
+teaser is parked at `/greenhouse` (noindex), and `/site.html` 301s to `/`.
+
+**Signup → Kit form 9795875.** It sends `fields[first_name]`, `fields[last_name]` and
+`email_address`, and all three are required. First name is built into Kit.
+**`last_name` is a custom field**, so it has to exist in Kit (Subscribers → Custom
+fields, key `last_name`) or Kit drops the value without any error. The form auto-confirms
+and sends no confirmation email, so the success message doesn't tell anyone to check
+their inbox.
+
+
 Every placeholder is filled. There is no bracketed text left in the page — it is
 publishable as-is tonight.
 
