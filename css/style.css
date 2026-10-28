@@ -36,6 +36,7 @@
   --moss-light:#9DBA95;  /* passes 4.5:1 on forest */
   --clay:#B07A55;
   --clay-dark:#8C5C3B;
+  --blush:#E9C4BC;       /* the hero roses; accents on the dark hero only */
   --ink:#222B25;
   --ink-soft:#5A645D;
   --rule:#DCD4C4;
@@ -100,6 +101,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ── Type ─────────────────────────────────────────────────── */
 h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;color:var(--forest);letter-spacing:-.012em}
+/* No one-word last lines in headings; no orphans in body copy. */
+h1,h2,h3,h4,blockquote,.sec-lead,.retreat-turn{text-wrap:balance}
+p{text-wrap:pretty}
 .display{font-size:clamp(2.7rem,7.6vw,6.6rem);font-weight:400;line-height:1.02;letter-spacing:-.018em}
 .display em{font-style:italic;font-weight:300}
 .h-lg{font-size:clamp(1.85rem,4.1vw,3.3rem);line-height:1.12;letter-spacing:-.014em}
@@ -224,26 +228,55 @@ strong{font-weight:600}
 .drawer > .btn{display:block;margin:22px var(--gut) 30px;text-align:center}
 
 /* ── Hero ─────────────────────────────────────────────────── */
-.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:calc(var(--nav-h) + 60px) 0 90px;overflow:hidden;background:var(--forest-deep)}
+/* Editorial, not centred: the roses fill the right of the frame and the left
+   is near-black, so the copy sits on the dark side and the flowers are left
+   alone. Copy is anchored to the bottom of the viewport, with the retreat
+   date and the actions on a hairline-ruled strip beneath it. */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:flex-end;
+  padding:calc(var(--nav-h) + 72px) 0 clamp(48px,7vh,84px);overflow:hidden;background:#0E120F;color:#fff
+}
 /* <picture> is a real box between the wrapper and the <img>; without an
    explicit height here the img's height:100% has nothing to resolve
    against and the photo stops short of filling the section. */
 .hero-media,.interlude-media,.join-media{position:absolute;inset:-8% 0;z-index:0;will-change:transform}
 .hero-media picture,.interlude-media picture,.join-media picture{display:block;width:100%;height:100%}
 .hero-media img,.interlude-media img,.join-media img{width:100%;height:100%;object-fit:cover}
+.hero-media img{object-position:72% 40%}
 .hero-veil{
   position:absolute;inset:0;z-index:1;
   background:
-    linear-gradient(to bottom,rgba(12,20,15,.62) 0%,rgba(12,20,15,.30) 30%,rgba(12,20,15,.52) 68%,rgba(12,20,15,.88) 100%),
-    radial-gradient(120% 85% at 50% 50%, rgba(12,20,15,.52) 0%, rgba(12,20,15,.18) 55%, transparent 100%);
+    linear-gradient(90deg,rgba(10,13,11,.72) 0%,rgba(10,13,11,.38) 38%,rgba(10,13,11,0) 62%),
+    linear-gradient(to bottom,rgba(10,13,11,.6) 0%,rgba(10,13,11,0) 24%,rgba(10,13,11,0) 58%,rgba(10,13,11,.82) 100%);
 }
 .hero-inner{position:relative;z-index:2;width:100%}
+.hero-copy{max-width:58%}
 
-.hero .kicker{color:rgba(255,255,255,.8);margin-bottom:26px}
-.hero h1{color:#fff;margin:0 auto 30px;max-width:none}
+.hero .kicker{
+  display:flex;align-items:center;gap:16px;
+  color:var(--blush);font-size:.7rem;letter-spacing:.32em;margin-bottom:30px
+}
+.hero .kicker::before{content:'';width:44px;height:1px;background:currentColor;opacity:.7}
+.hero h1{color:#F6F1EA;margin:0 0 34px;font-size:clamp(3rem,6vw,6.6rem);line-height:.98;letter-spacing:-.024em;white-space:nowrap}
+.hero h1 em{color:var(--blush)}
 .hero h1 br{display:block}
-.hero-sub{color:rgba(255,255,255,.85);max-width:54ch;font-size:clamp(1rem,1.35vw,1.16rem);margin:0 auto 38px}
-.hero-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.hero-sub{
+  color:rgba(246,241,234,.78);max-width:44ch;margin:0;
+  font-size:clamp(1.02rem,1.3vw,1.14rem);line-height:1.75
+}
+
+.hero-foot{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;
+  margin-top:clamp(44px,8vh,88px);padding-top:28px;border-top:1px solid rgba(246,241,234,.2)
+}
+.hero-when{display:grid;gap:2px;margin:0}
+.hero-when .label{color:rgba(246,241,234,.55);margin-bottom:10px}
+.hero-when em{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.3rem,1.9vw,1.6rem);line-height:1.3;color:#F6F1EA}
+.hero-cta{display:flex;align-items:center;gap:34px;flex-wrap:wrap}
+.hero .btn-solid-light{background:#F6F1EA;border-color:#F6F1EA;color:#16231B;padding:18px 38px}
+.hero .btn-solid-light:hover{background:var(--blush);border-color:var(--blush);color:#16231B}
+.link-arrow-light{color:#F6F1EA;border-color:rgba(246,241,234,.3)}
+.link-arrow-light:hover{color:var(--blush);border-color:var(--blush)}
 
 
 
@@ -472,21 +505,27 @@ strong{font-weight:600}
      band below bled into frame. dvh re-measures as the bar retracts, which
      reflows the page mid-scroll — that is the jump, never use it here.
      lvh is the bar-RETRACTED height and is a static value: the hero is never
-     shorter than the screen, and nothing ever resizes. The heavier bottom
-     padding biases the copy upward so it still reads as optically centred
-     during the moment the bar is showing. */
-  .hero{min-height:100vh;min-height:100lvh;padding:calc(var(--nav-h) + 50px) 0 130px}
+     shorter than the screen, and nothing ever resizes. The copy is anchored
+     to the bottom, so the bottom padding adds (lvh − svh) — exactly the
+     URL bar's height — to keep the actions above the bar while it shows. */
+  .hero{min-height:100vh;min-height:100lvh;padding:calc(var(--nav-h) + 50px) 0 64px;padding-bottom:calc(56px + 100lvh - 100svh)}
   /* Static grain on phones. A full-viewport blended layer repainting three
      times a second is the most expensive thing on the page, and the shimmer
      is imperceptible at 3x DPR. */
   .grain{animation:none}
-  /* Portrait crop lands in the fog; bias down to the treeline and
-     deepen the veil where the copy sits. */
-  .hero-media img{object-position:50% 68%}
-  .hero-veil{background:linear-gradient(to bottom,rgba(12,20,15,.52) 0%,rgba(12,20,15,.34) 26%,rgba(12,20,15,.74) 60%,rgba(12,20,15,.93) 100%)}
-  .hero h1{max-width:none}
-  .hero-cta{flex-direction:column;align-items:stretch}
+  /* Portrait crop: keep the cluster of open roses in the upper half and
+     let the copy sit on a deepening veil beneath them. */
+  .hero-media img{object-position:64% 50%}
+  .hero-veil{background:linear-gradient(to bottom,rgba(10,13,11,.42) 0%,rgba(10,13,11,.08) 24%,rgba(10,13,11,.62) 34%,rgba(10,13,11,.9) 62%,rgba(10,13,11,.96) 100%)}
+  .hero-copy{max-width:none}
+  .hero .kicker{margin-bottom:22px;font-size:.64rem;letter-spacing:.24em}
+  .hero .kicker::before{display:none}
+  /* sized to keep "Before the bloom," on one line down to 340px */
+  .hero h1{margin-bottom:24px;font-size:clamp(2.1rem,10vw,3rem)}
+  .hero-foot{margin-top:36px;gap:28px}
+  .hero-cta{flex-direction:column;align-items:stretch;gap:22px;width:100%}
   .hero-cta .btn{text-align:center}
+  .hero-cta .link-arrow{align-self:center}
   .editorial{grid-template-columns:1fr;gap:0}
   .editorial-side{position:static;margin-bottom:22px}
   .editorial-body .h-lg{max-width:none;margin-bottom:28px}
@@ -588,20 +627,7 @@ strong{font-weight:600}
 }
 
 
-/* ── Launch: retreat flyer details ─────────────────────────
-   Borrowed from the printed retreat flyer: a warmer, dustier dusk
-   over the hero photo instead of forest green, the date set in
-   italic serif, and the wide-tracked eyebrow at a readable size. */
-.hero-veil{
-  background:
-    linear-gradient(to bottom,rgba(28,22,20,.58) 0%,rgba(28,22,20,.26) 32%,rgba(28,22,20,.50) 68%,rgba(20,16,14,.88) 100%),
-    radial-gradient(120% 85% at 50% 50%, rgba(28,22,20,.50) 0%, rgba(28,22,20,.16) 55%, transparent 100%);
-}
-.hero .kicker{font-size:.78rem;letter-spacing:.3em;color:rgba(255,255,255,.88)}
-.hero-when{margin:-8px auto 38px;color:#fff}
-.hero-when .label{color:rgba(255,255,255,.7);margin-bottom:10px}
-.hero-when em{display:block;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.35}
-
+/* ── Launch: retreat section, after the printed flyer ─────── */
 .retreat-turn{
   font-family:var(--serif);font-style:italic;font-weight:300;
   font-size:clamp(1.45rem,2.5vw,2rem);line-height:1.25;color:var(--clay-dark);
@@ -617,7 +643,3 @@ strong{font-weight:600}
   .signup input[type="email"]{flex:1 1 100%}
 }
 
-@media (max-width:680px){
-  .hero-veil{background:linear-gradient(to bottom,rgba(28,22,20,.50) 0%,rgba(28,22,20,.34) 26%,rgba(24,18,16,.74) 60%,rgba(20,16,14,.93) 100%)}
-  .hero-when{margin-bottom:30px}
-}

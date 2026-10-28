@@ -83,6 +83,7 @@ fallback and correct `width`/`height` to prevent layout shift.
 | `cabin` | 258471563 | retreats |
 | `seedhead` | 407532685 | who teaches |
 | `leaves` | 589263674 | join section |
+| `hero-roses` | Unsplash (free licence) | hero, from October 2026 — replaced `hero-bloom` |
 
 The hero and the “who teaches” image were both replaced in v2 for the same reason as the
 logo: a conifer forest and a stand of pine trunks are trees, not stems. They're now a
