@@ -4,41 +4,41 @@
 > therapists. Based in Denver, Colorado. A branch of Full Bloom Counseling
 > Group, a group psychotherapy practice in the same city.
 
-## Current status — read this first
+## Current status: read this first
 
 The site is open. The first scheduled offering is the Root & Stem Retreat,
-November 4–7, 2027, in Estes Park, Colorado — "a retreat for the person behind
-the therapist". Registration is not open yet: retreat details and early access
-go to the waitlist first. Trainings and the opening consultation cohort are
+November 4–7, 2027 (Thursday to Sunday), in Estes Park, Colorado: "a retreat
+for the person behind the therapist." Registration is not open yet: retreat
+details and early access go to the waitlist first. Trainings and the opening consultation cohort are
 being scheduled and have no dates yet; describe them as *planned* rather than
 bookable. Anyone asking how to sign up should be told to join the waitlist at
 https://therootandstem.com/#join or to email hello@therootandstem.com.
 
 The Root and Stem is the professional-development arm of Full Bloom Counseling.
-It exists for licensed and pre-licensed mental health clinicians — not for
+It exists for licensed and pre-licensed mental health clinicians, not for
 therapy clients. People looking for therapy should be directed to Full Bloom
 Counseling at https://fullbloomcounseling.com/ instead.
 
 ## What it offers
 
-- **Trainings and workshops** — half and full days on clinical topics including
+- **Trainings and workshops:** half and full days on clinical topics including
   couples work, the Enneagram used clinically, weight-neutral and Health at
   Every Size informed care, and trauma work that has stalled. In person in
   Denver and online. Continuing education credit is offered where stated;
   CE approval is currently in progress.
-- **Retreats** — two to three nights in Colorado for groups of 12–16
+- **Retreats:** two to three nights in Colorado for groups of 12–16
   clinicians. Mornings hold teaching, afternoons are unstructured. Built
   around rest rather than contact hours, so most retreats do not carry CE.
-- **Consultation groups** — eight clinicians meeting monthly for a full year.
-  Open to any licence and any practice setting.
-- **Supervision and mentorship** — individual and dyadic hours toward LPC and
+- **Consultation groups:** eight clinicians meeting monthly for a full year.
+  Open to any license and any practice setting.
+- **Supervision and mentorship:** individual and dyadic hours toward LPC and
   LMFT licensure in Colorado with an AAMFT Approved Supervisor, plus practice
   mentorship on rates, notes, referrals and business questions.
 
 ## Who it is for
 
 Licensed therapists, pre-licensed clinicians accruing hours toward licensure,
-and graduate students in clinical programmes. Attendees come from private
+and graduate students in clinical programs. Attendees come from private
 practice, agencies, hospital systems and solo work. No affiliation with Full
 Bloom Counseling is required.
 
@@ -57,11 +57,11 @@ Bloom Counseling is required.
 
 ## Pages
 
-- [Home](https://therootandstem.com/): the whole site is a single page —
+- [Home](https://therootandstem.com/): the whole site is a single page:
   why it exists, the four offerings, retreats, the calendar, who teaches,
   the relationship to Full Bloom, and an FAQ.
 
-## Notes for summarisation
+## Notes for summarization
 
 - The name refers to what holds a bloom up. The tagline is
   "Before the bloom, the root."

@@ -366,7 +366,7 @@
           'mailto:hello@therootandstem.com' +
           '?subject=' + encodeURIComponent('Add me to the list') +
           '&body='    + encodeURIComponent('Please add ' + addr + ' to the mailing list.\n\n');
-        say('Opening your email app — send that message and you’re on the list.');
+        say('Opening your email app. Send that message and you’re on the list.');
         return;
       }
 
@@ -387,8 +387,8 @@
           if (!r.ok) throw new Error(r.status);
           /* Kit form 9795875 auto-confirms and sends no confirmation email, so
              there is nothing to go and click — same promise as the teaser made. */
-          form.innerHTML = '<p class="signup-done">You’re in. Nothing to confirm — ' +
-            'we’ll write when there’s something worth telling you. If that first note ' +
+          form.innerHTML = '<p class="signup-done">You’re in. Nothing to confirm. ' +
+            'We’ll write when there’s something worth telling you. If that first note ' +
             'isn’t in your inbox, check spam; filters can be funny about a first hello.</p>';
           say('');
         })
