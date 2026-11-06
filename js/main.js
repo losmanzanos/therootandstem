@@ -385,8 +385,9 @@
       })
         .then(function (r) {
           if (!r.ok) throw new Error(r.status);
-          /* Kit form 9795875 auto-confirms and sends no confirmation email, so
-             there is nothing to go and click — same promise as the teaser made. */
+          /* Kit form 9795875 auto-confirms, so there is nothing to go and click.
+             Kit still sends one welcome email from the form ("Send confirmation
+             email" is on alongside "Auto-confirm"); its button just links to the site. */
           form.innerHTML = '<p class="signup-done">You’re in. Nothing to confirm. ' +
             'We’ll write when there’s something worth telling you. If that first note ' +
             'isn’t in your inbox, check spam; filters can be funny about a first hello.</p>';
