@@ -453,6 +453,8 @@ strong{font-weight:600}
   margin-top:70px;padding:22px 0;border-top:1px solid rgba(255,255,255,.11);
   display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.42)
 }
+.foot-credit a{color:rgba(255,255,255,.62);border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:1px;transition:color .2s,border-color .2s}
+.foot-credit a:hover{color:#fff;border-color:#fff}
 
 /* ── Motion primitives ────────────────────────────────────── */
 /* Cormorant has deep descenders and these headings run at tight leading, so
