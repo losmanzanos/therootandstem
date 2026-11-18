@@ -57,9 +57,21 @@ Bloom Counseling is required.
 
 ## Pages
 
-- [Home](https://therootandstem.com/): the whole site is a single page:
-  why it exists, the four offerings, retreats, the calendar, who teaches,
-  the relationship to Full Bloom, and an FAQ.
+- [Home](https://therootandstem.com/): why it exists, the four offerings in
+  brief, the retreat, the calendar, who teaches, the relationship to Full
+  Bloom, and a general FAQ.
+- [Retreat](https://therootandstem.com/retreat): the first retreat, November
+  4–7, 2027 in Estes Park, Colorado. What the days look like, where it is,
+  how many people, how cost and registration work, and a retreat FAQ.
+- [Trainings](https://therootandstem.com/trainings): half and full day
+  trainings in Denver and online, the four current topics, how a day runs,
+  private trainings for practices, and a trainings FAQ including CE status.
+- [Consultation groups](https://therootandstem.com/consultation-groups):
+  monthly groups of eight clinicians held together for a year, why the
+  length matters, how a session runs, and a consultation FAQ.
+- [Supervision](https://therootandstem.com/supervision): individual and
+  dyadic supervision toward LPC and LMFT licensure in Colorado with an AAMFT
+  Approved Supervisor, practice mentorship, and a supervision FAQ.
 
 ## Notes for summarization
 
