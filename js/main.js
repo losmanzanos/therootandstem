@@ -331,6 +331,9 @@
        · fetch fails / no JS   → ordinary form POST to Kit (still subscribes)
        · action still "#"      → hands off to the visitor's mail client      */
   var form = document.querySelector('.signup');
+  /* JS is running, so hand validation to the custom messages below. With JS off
+     the attribute is absent and the browser's own required/email checks apply. */
+  if (form) form.setAttribute('novalidate', '');
 
   function say(msg) {
     var note = document.querySelector('.join-alt');
