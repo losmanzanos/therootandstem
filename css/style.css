@@ -147,7 +147,11 @@ strong{font-weight:600}
 
 /* ── Buttons ──────────────────────────────────────────────── */
 .btn{
-  display:inline-block;padding:16px 34px;border-radius:2px;
+  /* nowrap: a button label is never allowed to break onto a second line. The
+     join form's submit was sized to a 220px min-width with a label that
+     measures ~214px on Linux and a few px wider on a Mac, so a hover repaint
+     could tip it into wrapping. */
+  display:inline-block;padding:16px 34px;border-radius:2px;white-space:nowrap;
   font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1;
   border:1.5px solid transparent;transition:background .3s var(--e-out),color .3s var(--e-out),border-color .3s var(--e-out)
 }
@@ -599,7 +603,7 @@ strong{font-weight:600}
 /* ── Signup: two fields now ────────────────────────────────── */
 .signup input[type="text"]{flex:1 1 170px}
 .signup input[type="email"]{flex:2 1 240px}
-.signup button[type="submit"]{flex:0 0 auto;margin:6px auto 0;min-width:220px}
+.signup button[type="submit"]{flex:0 0 auto;margin:6px auto 0;padding-inline:40px}
 .signup input[aria-invalid="true"]{border-color:#C98A6B}
 @media (max-width:560px){
   /* Column direction: flex-grow must be 0 or the inputs stretch vertically */
